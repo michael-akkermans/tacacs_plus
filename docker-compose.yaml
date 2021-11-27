@@ -1,0 +1,12 @@
+version: "3"
+services:
+  tacacs_plus:
+    build: .
+    image: tacacs_plus
+    container_name: tacacs_plus
+    restart: unless-stopped
+    volumes:
+      - "./tac_plus.conf:/etc/tacacs+/tac_plus.conf"
+    ports:
+      - "49:49"
+    command: bash -c "/usr/sbin/tac_plus -C /etc/tacacs+/tac_plus.conf -G"
